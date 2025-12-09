@@ -1,0 +1,138 @@
+Entrem na guia anonima!!
+
+Senha: pesc
+Vjudge: https://vjudge.net/group/ufrj-semana-olimpica-2025?r=TIZz4ZW7YmOiqSRSKmXK
+
+Slides:
+Aula 1: https://drive.google.com/file/d/1VgsGAyS4wu-iIOmQEwiTUmFfjnwSFiJ9/view?usp=drivesdk
+Aula 2: https://drive.google.com/file/d/1jja3opTc_7RcKU4-RkSf5hSnAEH96kzA/view?usp=drivesdk
+
+
+
+
+
+Resoluções da manhã:
+
+NÚMERO DESAPARECIDO:
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+int main(){
+    ll an; cin >> an;
+    ll sumN = ((1+an)*an)/2;
+    ll sumC = 0;
+    for (ll i = 0; i < an-1; i++)
+    {
+        ll curr;
+        cin >> curr;
+        sumC += curr;
+    }
+
+    cout << sumN - sumC;
+    
+    return 0;
+}
+
+ZEROS...:
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+int main(){
+    ll n,counter;
+    cin >> n;
+    counter = 0;
+    if (n % 5 != 0)
+        n -= n%5;
+    while (n >= 5)
+    {
+        ll valor = n;
+        while (valor % 5 == 0)
+        {
+            valor /= 5;
+            counter++;
+        }
+        n -= 5;
+        
+    }
+    cout << counter << "\n";    
+    return 0;
+}
+
+PILHA DE MOEDAS:
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+int main(){
+    ios::sync_with_stdio(0); cin.tie(nullptr);
+    int t ;
+    cin >> t;
+    int a[t];
+    int b[t];
+    bool answ[t];
+    for (int i = 0; i < t; i++)
+    {
+        cin >> a[i] >> b[i];
+        int maior = max(a[i],b[i]);
+        int menor = min(a[i],b[i]);
+        if (maior >  2*menor || (maior + menor) % 3 != 0){
+            answ[i] = false;
+        } else{
+            answ[i] = true;
+        }
+
+    }
+
+    for (int i = 0; i < t; i++)
+    {
+        //answ[i] ? cout << "YES\n" : cout << "NO\n";
+        if (answ[i])
+            cout << "YES\n";
+        else 
+            cout << "NO\n";
+    }
+    
+    
+    return 0;
+}
+
+BOMBAS:
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+int main(){
+    int r,c;
+    cin >> r >> c;
+    char matriz[r][c];
+    char answ[r][c];
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            cin >> matriz[i][j];
+            answ[i][j] = matriz[i][j];
+        }
+    }
+
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            if (matriz[i][j] != '.' && matriz[i][j] != '#'){
+                for (int l = 0; l < r; l++)
+                {
+                    for (int k = 0; k < c; k++)
+                    {
+                        if (abs(i - l) + abs(j - k) <= matriz[i][j] - '0')
+                        {
+                            answ[l][k] = '.';
+                        }
+                    }
+                    
+                }
+                
+
+            }
+        }
+        
+    }
