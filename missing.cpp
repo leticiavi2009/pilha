@@ -2,7 +2,7 @@
 using namespace std;
 
 
-int main{
+int main(){
     int an;
     int sumN = {(1+an)*an}/2;
     int sumC = 0;
