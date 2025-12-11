@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<vector<bool>>visited;
+//;vector<vector<char>>mapa;
+const int MAXN = 1e5+5;
+char mapa[MAXN][MAXN];
+int n; //quantidade de linhas
+int m; //quantidade de colunas
+void dfs(int y , int x){ //o y é a linha e o x é a coluna.
+    visited[y][x] = true;
+//o próximo é a  coluna x + 1
+
+    if( x < m - 1  &&  visited[y][x+1] == true){ // direita
+        if(mapa[y][x + 1] == '.'){
+            dfs(y , x + 1);
+        }
+    }
+    if( y < n - 1  && visited[y+1][x] == true){ // baixo
+         if(mapa[y+1][x] == '.'){
+            dfs(y + 1 , x);
+        }
+    }
+    if( y > 0 && visited[y-1][x] == true){ // linha para cima
+         if(mapa[y-1][x] == '.'){
+            dfs(y - 1 , x);
+        }
+    }
+    if( x > 0 && visited[y][x-1] == true){ // esquerda
+         if(mapa[y][x - 1] == '.'){
+            dfs(y , x - 1);
+        }
+    }
+
+}
+
+int main(){
+    int grupo = 0;
+    cin >> n >> m;
+    vector <char> linha_vazia(m,'-');
+    //mapa.assign(n, linha_vazia);//serve para dimensionar o tamanho do vetor global
+    visited.assign( n, vector <bool>(m, 0));
+    /*o '.assign' serve para preencher o vetor. O primeiro argumento
+    é colunas e o segundo é a quantidade de linhas*/
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            cin >> mapa[i][j]; 
+
+        }
+    }
+    cout << "Teste";
+      for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+           if(mapa[i][j] == '.'){
+            if(visited[i][j] == false ){ //se não foi visitado, ele vai visitar agr
+                dfs(i ,j);// gurda um grupo só, porque ela passa por todos os vértice de um componente convexo 
+                grupo++;
+            } 
+                }
+            }
+        }
+        cout << grupo;
+}
