@@ -22,7 +22,6 @@ void dfs(int u){ //retorno void, não tem retorno.
     dentro do vetor e daí se caso esse elementod o vetor foi visitado ele passa a ser de 0*/
     } 
     
-    
 }
 
 int main(){
@@ -40,7 +39,9 @@ int main(){
         cin >> u  >> v;
         u--; /*voltar para posição incial do vetor*/
         v--;
-        adjacencias[u].push_back(v); 
+        adjacencias[u].push_back(v);
+        adjacencias[v].push_back(u);//precisa fazer os dois pq da para ir para os dois lados
+
 
         //estou adicionando u e v na minha lista, o u primeiro e o v por último.
         //matriz gurda informações inúteis, lista guarda informações necessárias nesse caso.
